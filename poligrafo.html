@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>POLÍGRAFO | Investigação</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Special+Elite&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="poligrafo.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         CURSOR PERSONALIZADO (LUPA)
+    ====================================================== -->
+
+    <div id="customCursor">
+        <div class="magnifying-glass">
+            <div class="glass">
+                <div class="glass-reflection"></div>
+            </div>
+        </div>
+        <div class="magnifying-handle"></div>
+    </div>
+
+
+    <!-- =====================================================
+         CABEÇALHO FIXO NO TOPO DO DOSSIÊ
+    ====================================================== -->
+
+    <header>
+
+        <div class="logo">
+            DARK EVIDENCE
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <!-- Ícone de Casinha (Home) -->
+            <a href="index.html" style="color: #6b1e23; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: .3s;" onmouseover="this.style.color='#eadfd5'; this.style.filter='drop-shadow(0 0 10px rgba(107,30,35,.75))'" onmouseout="this.style.color='#6b1e23'; this.style.filter='none'">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </a>
+
+            <button
+                class="menu-button"
+                id="openMenu"
+                aria-label="Abrir arquivos"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MENU DE ARQUIVOS (PASTA DE OVERLAY)
+    ====================================================== -->
+
+    <div class="file-overlay" id="fileOverlay">
+
+        <div class="file-folder">
+
+            <div class="folder-tab">
+                ARQUIVO CORROMPIDO
+            </div>
+
+            <button class="close-file" id="closeMenu">
+                ×
+            </button>
+
+            <div class="pages">
+
+                <article class="page">
+                    <div class="page-label">ARQUIVO 01</div>
+                    <h2>Mapa de Evidências</h2>
+                    <div class="line"></div>
+                    <p>Análise estatística de casos criminais por período, localização e número de vítimas, identificando padrões, relações e possíveis correlações entre diferentes características das ocorrências.</p>
+                </article>
+
+                <article class="page">
+                    <div class="page-label">ARQUIVO 02</div>
+                    <h2>Análise de Evidências</h2>
+                    <div class="line"></div>
+                    <p>Aplicação de modelos computacionais para analisar a evolução dos casos ao longo dos anos, identificar padrões em ocorrências solucionadas e não solucionadas e classificar casos a partir de características previamente registradas.
+</p>
+                </article>
+
+                <article class="page">
+                    <div class="page-label">ARQUIVO 03</div>
+                    <h2>Caso Oculto</h2>
+                    <div class="line"></div>
+                    <p>Análise de padrões, agrupamentos e associações entre características das ocorrências, acompanhando sua evolução ao longo do tempo e identificando mudanças nos diferentes períodos.
+</p>
+                </article>
+
+                <!-- ARQUIVO 04 (SELECIONADO) -->
+                <article class="page selected">
+                    <div class="page-label">ARQUIVO 04</div>
+                    <h2>Polígrafo</h2>
+                    <div class="line"></div>
+                    <p>Para encerrar essa bela jornada de conhecimento, fizemos 6 perguntinhas para vocês responderem e testarem o seu conhecimento!</p>
+                </article>
+
+            </div>
+
+            <div class="navigation">
+
+                <div class="page-indicator" id="pageIndicator">
+                    <div class="evidence-mark" data-page="0"></div>
+                    <div class="evidence-mark" data-page="1"></div>
+                    <div class="evidence-mark" data-page="2"></div>
+                    <div class="evidence-mark active" data-page="3"></div>
+                </div>
+
+                <div class="navigation-controls">
+                    <button class="nav-arrow" id="previousPage" aria-label="Arquivo anterior">←</button>
+                    <button class="investigate-button" id="investigate">INVESTIGAR</button>
+                    <button class="nav-arrow hidden" id="nextPage" aria-label="Próximo arquivo">→</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         RUÍDO DO FUNDO & MANCHAS
+    ====================================================== -->
+
+    <div class="noise"></div>
+
+    <div class="blood blood-1"></div>
+    <div class="blood blood-2"></div>
+    <div class="blood blood-3"></div>
+
+
+    <!-- =====================================================
+         ABERTURA
+    ====================================================== -->
+
+    <section class="intro" id="intro">
+
+        <div class="case-number">
+            CASO Nº 001 — ARQUIVO CONFIDENCIAL
+        </div>
+
+        <div class="investigation-animation">
+
+            <div class="detective-hat">
+                <div class="hat-crown"></div>
+                <div class="hat-band"></div>
+                <div class="hat-brim"></div>
+            </div>
+
+            <div class="magnifying-glass">
+                <div class="glass">
+                    <div class="glass-light"></div>
+                </div>
+                <div class="magnifier-handle"></div>
+            </div>
+
+        </div>
+
+        <div class="intro-content">
+
+            <div class="classified">
+                CONFIDENCIAL
+            </div>
+
+            <h1>
+                POLÍGRAFO
+            </h1>
+
+            <div class="title-line"></div>
+
+            <p class="subtitle">
+                INVESTIGAÇÃO DE DADOS
+            </p>
+
+            <p class="intro-description">
+                Analise as evidências, observe as informações
+                e determine quais afirmações são verdadeiras.
+            </p>
+
+            <div class="classified-bottom">
+                ACESSO AUTORIZADO
+            </div>
+
+            <button id="investigateBtn" class="investigate-btn">
+                INVESTIGUE
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+
+    <main id="mainContent" class="main-content hidden">
+
+        <!-- INSTRUÇÕES -->
+        <section class="instructions">
+
+            <div class="stamp">
+                DOCUMENTO OFICIAL
+            </div>
+
+            <h2>
+                REGISTRO DE EVIDÊNCIAS
+            </h2>
+
+            <p>
+                Leia cuidadosamente cada declaração abaixo.
+                Determine se a informação apresentada é
+                <strong>VERDADEIRA</strong> ou
+                <strong>FALSA</strong>.
+            </p>
+
+            <div class="instruction-line"></div>
+
+        </section>
+
+
+        <!-- PERGUNTAS -->
+        <section class="questions" id="questions">
+
+            <!-- PERGUNTA 1 -->
+            <article class="case-card">
+                <div class="case-header">
+                    <span>EVIDÊNCIA 001</span>
+                    <span>REGISTRO #001</span>
+                </div>
+                <div class="case-body">
+                    <div class="case-number-big">01</div>
+                    <div class="case-content">
+                        <p>
+                            A distribuição estatística ajuda a organizar
+                            e entender como os valores de um conjunto
+                            de dados estão distribuídos.
+                        </p>
+                        <div class="answer-buttons">
+                            <button class="answer-btn" data-question="1" data-answer="true">VERDADEIRO</button>
+                            <button class="answer-btn" data-question="1" data-answer="false">FALSO</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PERGUNTA 2 -->
+            <article class="case-card">
+                <div class="case-header">
+                    <span>EVIDÊNCIA 002</span>
+                    <span>REGISTRO #002</span>
+                </div>
+                <div class="case-body">
+                    <div class="case-number-big">02</div>
+                    <div class="case-content">
+                        <p>
+                            Correlação e covariância são usadas para
+                            analisar a relação entre variáveis, indicando
+                            como elas variam em conjunto.
+                        </p>
+                        <div class="answer-buttons">
+                            <button class="answer-btn" data-question="2" data-answer="true">VERDADEIRO</button>
+                            <button class="answer-btn" data-question="2" data-answer="false">FALSO</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PERGUNTA 3 -->
+            <article class="case-card">
+                <div class="case-header">
+                    <span>EVIDÊNCIA 003</span>
+                    <span>REGISTRO #003</span>
+                </div>
+                <div class="case-body">
+                    <div class="case-number-big">03</div>
+                    <div class="case-content">
+                        <p>
+                            A regressão linear busca representar a relação
+                            entre variáveis por meio de uma função linear,
+                            podendo ser usada para estimar valores.
+                        </p>
+                        <div class="answer-buttons">
+                            <button class="answer-btn" data-question="3" data-answer="true">VERDADEIRO</button>
+                            <button class="answer-btn" data-question="3" data-answer="false">FALSO</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PERGUNTA 4 -->
+            <article class="case-card">
+                <div class="case-header">
+                    <span>EVIDÊNCIA 004</span>
+                    <span>REGISTRO #004</span>
+                </div>
+                <div class="case-body">
+                    <div class="case-number-big">04</div>
+                    <div class="case-content">
+                        <p>
+                            A regressão logística é utilizada principalmente
+                            para prever categorias ou classes, como uma
+                            classificação binária.
+                        </p>
+                        <div class="answer-buttons">
+                            <button class="answer-btn" data-question="4" data-answer="true">VERDADEIRO</button>
+                            <button class="answer-btn" data-question="4" data-answer="false">FALSO</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PERGUNTA 5 -->
+            <article class="case-card">
+                <div class="case-header">
+                    <span>EVIDÊNCIA 005</span>
+                    <span>REGISTRO #005</span>
+                </div>
+                <div class="case-body">
+                    <div class="case-number-big">05</div>
+                    <div class="case-content">
+                        <p>
+                            No ML supervisionado, o modelo aprende a partir
+                            de dados que possuem informações sobre a resposta
+                            ou classe esperada.
+                        </p>
+                        <div class="answer-buttons">
+                            <button class="answer-btn" data-question="5" data-answer="true">VERDADEIRO</button>
+                            <button class="answer-btn" data-question="5" data-answer="false">FALSO</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PERGUNTA 6 -->
+            <article class="case-card">
+                <div class="case-header">
+                    <span>EVIDÊNCIA 006</span>
+                    <span>REGISTRO #006</span>
+                </div>
+                <div class="case-body">
+                    <div class="case-number-big">06</div>
+                    <div class="case-content">
+                        <p>
+                            No ML não supervisionado, o modelo trabalha
+                            com dados sem respostas previamente definidas
+                            e pode identificar padrões ou agrupamentos
+                            por conta própria.
+                        </p>
+                        <div class="answer-buttons">
+                            <button class="answer-btn" data-question="6" data-answer="true">VERDADEIRO</button>
+                            <button class="answer-btn" data-question="6" data-answer="false">FALSO</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+
+        <!-- FINAL -->
+        <section class="final-section">
+
+            <div class="final-file">
+
+                <div class="final-stamp">
+                    INVESTIGAÇÃO ENCERRADA
+                </div>
+
+                <h2>
+                    Obrigada pela sua participação!
+                </h2>
+
+                <p>
+                    Todas as evidências foram registradas.
+                    Agora é possível calcular o resultado
+                    da investigação.
+                </p>
+
+                <button id="calculateBtn" class="calculate-btn">
+                    CALCULAR ACERTOS
+                </button>
+
+                <!-- RESULTADO -->
+                <div id="resultArea" class="result-area hidden">
+
+                    <div class="result-line"></div>
+
+                    <div id="percentage" class="percentage">
+                        0%
+                    </div>
+
+                    <div class="result-details">
+                        <div class="result-box">
+                            <span>ACERTOS</span>
+                            <strong id="correctCount">0</strong>
+                        </div>
+                        <div class="result-box">
+                            <span>ERROS</span>
+                            <strong id="wrongCount">0</strong>
+                        </div>
+                    </div>
+
+                    <p id="resultMessage" class="result-message"></p>
+
+                    <button id="retryBtn" class="retry-btn">
+                        TENTE DE NOVO
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RODAPÉ -->
+        <footer>
+            <span>POLÍGRAFO — ARQUIVO CONFIDENCIAL</span>
+            <span>SISTEMA DE INVESTIGAÇÃO</span>
+        </footer>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="script.js"></script>
+    <script src="poligrafo-script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1256 @@
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:"Courier New",monospace;
+
+    background:#0b0909;
+
+    color:#e8e0d5;
+
+    overflow-x:hidden;
+
+    cursor:none;
+}
+
+
+/* =========================
+   FUNDO
+========================= */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-2;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(107,30,35,.18),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            120deg,
+            #090808,
+            #160d0f,
+            #090808
+        );
+}
+
+.background::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,.012) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.012) 1px,
+            transparent 1px
+        );
+
+    background-size:40px 40px;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:75px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 35px;
+
+    background:rgba(10,8,8,.82);
+
+    border-bottom:
+        1px solid rgba(107,30,35,.40);
+
+    backdrop-filter:blur(8px);
+
+    z-index:100;
+}
+
+.logo{
+
+    color:#d8c8b3;
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================
+   BOTÃO MENU
+========================= */
+
+.menu-button{
+
+    width:43px;
+    height:43px;
+
+    border:1px solid #6b1e23;
+
+    background:rgba(107,30,35,.10);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:5px;
+
+    cursor:none;
+
+    transition:.3s;
+}
+
+.menu-button:hover{
+
+    background:
+        rgba(107,30,35,.30);
+
+    box-shadow:
+        0 0 18px rgba(107,30,35,.45);
+}
+
+.menu-button span{
+
+    width:20px;
+    height:2px;
+
+    background:#6b1e23;
+}
+
+
+/* =========================
+   ÁREA PRINCIPAL
+========================= */
+
+main{
+
+    min-height:100vh;
+
+    width:100%;
+}
+
+
+/* =========================
+   SOBREPOSIÇÃO
+========================= */
+
+.file-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.84);
+
+    backdrop-filter:blur(6px);
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.4s;
+
+    z-index:200;
+}
+
+.file-overlay.active{
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+
+/* =========================
+   ARQUIVO
+========================= */
+
+.file-folder{
+
+    position:relative;
+
+    width:min(700px,94%);
+
+    height:100%;
+
+    padding:
+        95px
+        45px
+        130px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #241214,
+            #321c1f
+        );
+
+    border-left:
+        2px solid #6b1e23;
+
+    box-shadow:
+        -20px 0 60px rgba(0,0,0,.65);
+
+    transform:translateX(100%);
+
+    transition:
+        .5s cubic-bezier(.77,0,.18,1);
+
+    overflow:hidden;
+}
+
+.file-overlay.active .file-folder{
+
+    transform:translateX(0);
+}
+
+.file-folder::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.12;
+
+    background-image:
+
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(255,255,255,.04) 4px
+        );
+
+    pointer-events:none;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.folder-tab{
+
+    position:absolute;
+
+    top:18px;
+    left:45px;
+
+    padding:11px 22px;
+
+    background:#6b1e23;
+
+    color:#eadfd5;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    border-radius:4px;
+
+    z-index:15;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 0 15px rgba(107,30,35,.25);
+}
+
+
+/* =========================
+   FECHAR
+========================= */
+
+.close-file{
+
+    position:absolute;
+
+    top:18px;
+    right:25px;
+
+    width:38px;
+    height:38px;
+
+    border:
+        1px solid #6b1e23;
+
+    background:
+        rgba(107,30,35,.15);
+
+    color:#d8c8b3;
+
+    font-size:22px;
+
+    cursor:none;
+
+    z-index:30;
+
+    transition:.3s;
+}
+
+.close-file:hover{
+
+    background:#6b1e23;
+
+    color:white;
+
+    transform:rotate(90deg);
+}
+
+
+/* =========================
+   FOLHAS
+========================= */
+
+.pages{
+
+    position:relative;
+
+    width:100%;
+    height:100%;
+}
+
+.page{
+
+    position:absolute;
+
+    left:50%;
+    top:45%;
+
+    width:min(510px,90%);
+
+    height:475px;
+
+    padding:40px;
+
+    background:#ded7ca;
+
+    color:#292621;
+
+    border-top:
+        7px solid #6b1e23;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.45);
+
+    transform:
+        translate(-50%,-50%)
+        rotate(var(--rotation));
+
+    transition:.4s;
+
+    cursor:none;
+}
+
+.page:nth-child(1){
+
+    --rotation:-4deg;
+
+    z-index:1;
+}
+
+.page:nth-child(2){
+
+    --rotation:3deg;
+
+    z-index:2;
+}
+
+.page:nth-child(3){
+
+    --rotation:-1deg;
+
+    z-index:3;
+}
+
+.page:nth-child(4){
+
+    --rotation:4deg;
+
+    z-index:4;
+}
+
+.page.selected{
+
+    transform:
+        translate(-50%,-50%)
+        rotate(0deg)
+        scale(1.02);
+
+    z-index:10;
+
+    box-shadow:
+
+        0 25px 50px rgba(0,0,0,.60),
+
+        0 0 20px rgba(107,30,35,.18);
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+.page-label{
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    color:#6b1e23;
+
+    margin-bottom:12px;
+
+    font-weight:bold;
+}
+
+.page h2{
+
+    font-family:Georgia,serif;
+
+    font-size:31px;
+
+    margin-bottom:20px;
+
+    color:#27231f;
+}
+
+.line{
+
+    width:100%;
+
+    height:1px;
+
+    background:
+        rgba(107,30,35,.35);
+
+    margin:20px 0;
+}
+
+.page p{
+
+    font-family:Georgia,serif;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    color:#4a443d;
+}
+
+
+/* =========================
+   NAVEGAÇÃO
+========================= */
+
+.navigation{
+
+    position:absolute;
+
+    bottom:24px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(540px,88%);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:10px;
+
+    z-index:40;
+}
+
+
+/* =========================
+   INDICADORES
+========================= */
+
+.page-indicator{
+
+    height:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-bottom:2px;
+}
+
+.evidence-mark{
+
+    position:relative;
+
+    width:25px;
+    height:4px;
+
+    background:
+        rgba(216,200,179,.25);
+
+    border:
+        1px solid rgba(216,200,179,.20);
+
+    cursor:none;
+
+    transition:.3s;
+}
+
+.evidence-mark::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:4px;
+    height:4px;
+
+    top:-1px;
+    right:-1px;
+
+    background:
+        rgba(216,200,179,.30);
+}
+
+.evidence-mark.active{
+
+    width:36px;
+
+    background:#6b1e23;
+
+    border-color:#6b1e23;
+
+    box-shadow:
+        0 0 10px rgba(107,30,35,.70);
+}
+
+.evidence-mark.active::after{
+
+    background:#d8c8b3;
+}
+
+
+/* =========================
+   CONTROLES
+========================= */
+
+.navigation-controls{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+}
+
+
+/* =========================
+   SETAS
+========================= */
+
+.nav-arrow{
+
+    width:58px;
+    height:48px;
+
+    flex-shrink:0;
+
+    border:
+        2px solid #6b1e23;
+
+    background:
+        rgba(107,30,35,.25);
+
+    color:#f0e4d7;
+
+    font-size:27px;
+
+    font-weight:bold;
+
+    cursor:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.25s;
+
+    box-shadow:
+        0 0 10px rgba(107,30,35,.25);
+}
+
+.nav-arrow:hover{
+
+    background:#6b1e23;
+
+    color:white;
+
+    transform:scale(1.08);
+
+    box-shadow:
+        0 0 18px rgba(107,30,35,.60);
+}
+
+.nav-arrow.hidden{
+
+    visibility:hidden;
+
+    pointer-events:none;
+}
+
+
+/* =========================
+   INVESTIGAR
+========================= */
+
+.investigate-button{
+
+    width:210px;
+    height:48px;
+
+    border:
+        2px solid #6b1e23;
+
+    background:#6b1e23;
+
+    color:#f7eee5;
+
+    font-family:
+        "Courier New",monospace;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    cursor:none;
+
+    transition:.25s;
+
+    box-shadow:
+        0 0 14px rgba(107,30,35,.35);
+}
+
+.investigate-button:hover{
+
+    background:#861f27;
+
+    border-color:#a52a32;
+
+    box-shadow:
+        0 0 25px rgba(107,30,35,.65);
+
+    transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   CURSOR — LUPA
+===================================================== */
+
+#customCursor{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    width:42px;
+    height:42px;
+
+    pointer-events:none;
+
+    z-index:99999;
+
+    transform:
+        translate(-50%,-50%);
+
+    transform-style:preserve-3d;
+
+    perspective:600px;
+}
+
+
+/* =====================================================
+   ARO DA LUPA
+===================================================== */
+
+.magnifying-glass{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:30px;
+    height:30px;
+
+    border-radius:50%;
+
+    border:3px solid #6b1e23;
+
+    background:transparent;
+
+    box-shadow:
+
+        0 0 8px rgba(107,30,35,.55),
+
+        0 0 15px rgba(107,30,35,.25);
+
+    transform-style:preserve-3d;
+
+    z-index:2;
+}
+
+
+/* =====================================================
+   VIDRO INTERNO
+===================================================== */
+
+.glass{
+
+    position:absolute;
+
+    /* centro exato do aro */
+    top:50%;
+    left:50%;
+
+    /* tamanho da área interna do vidro */
+    width:24px;
+    height:24px;
+
+    /* transforma em círculo perfeito */
+    border-radius:50%;
+
+    /* centraliza matematicamente */
+    transform:translate(-50%, -50%);
+
+    /* corta o reflexo exatamente no vidro */
+    overflow:hidden;
+
+    box-sizing:border-box;
+
+    /* aparência do vidro */
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255,255,255,.20),
+            rgba(255,255,255,.07) 35%,
+            rgba(107,30,35,.06) 70%,
+            rgba(0,0,0,.18) 100%
+        );
+
+    box-shadow:
+        inset 0 0 7px
+        rgba(255,255,255,.18);
+
+    pointer-events:none;
+
+    z-index:1;
+}
+
+
+/* =====================================================
+   REFLEXO
+===================================================== */
+
+.glass-reflection{
+
+    position:absolute;
+
+    top:-35px;
+    left:-25px;
+
+    width:8px;
+    height:90px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            transparent 0%,
+            rgba(255,255,255,.10) 20%,
+            rgba(255,255,255,.90) 48%,
+            rgba(255,255,255,.35) 58%,
+            transparent 100%
+        );
+
+    filter:blur(.8px);
+
+    transform:rotate(35deg);
+
+    opacity:0;
+
+    animation:
+
+        glassShine
+        2.2s
+        infinite
+        ease-in-out;
+
+    pointer-events:none;
+
+    z-index:5;
+}
+
+
+/* =====================================================
+   ANIMAÇÃO DO REFLEXO
+===================================================== */
+
+@keyframes glassShine{
+
+    0%{
+
+        transform:
+            translateX(-25px)
+            rotate(35deg);
+
+        opacity:0;
+    }
+
+    15%{
+
+        opacity:.15;
+    }
+
+    35%{
+
+        opacity:.75;
+    }
+
+    50%{
+
+        opacity:1;
+    }
+
+    65%{
+
+        opacity:.55;
+    }
+
+    85%{
+
+        opacity:.15;
+    }
+
+    100%{
+
+        transform:
+            translateX(55px)
+            rotate(35deg);
+
+        opacity:0;
+    }
+
+}
+
+
+/* =====================================================
+   CABO
+===================================================== */
+
+.magnifying-handle{
+
+    position:absolute;
+
+    left:27px;
+    top:27px;
+
+    width:18px;
+    height:5px;
+
+    border-radius:5px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #6b1e23,
+            #9b343b
+        );
+
+    transform:
+        rotate(45deg);
+
+    transform-origin:left center;
+
+    box-shadow:
+        0 0 6px rgba(107,30,35,.5);
+
+    z-index:1;
+}
+
+
+/* =====================================================
+   SALTO + 360° 3D
+===================================================== */
+
+#customCursor.spin{
+
+    animation:
+
+        cursorJump3D
+        .65s
+        cubic-bezier(.25,.8,.25,1);
+
+    transform-style:preserve-3d;
+
+    perspective:600px;
+}
+
+
+/* =====================================================
+   ANIMAÇÃO 3D
+===================================================== */
+
+@keyframes cursorJump3D{
+
+    0%{
+
+        transform:
+            translate(-50%,-50%)
+            translateY(0)
+            rotateY(0deg)
+            scale(1);
+    }
+
+    15%{
+
+        transform:
+            translate(-50%,-50%)
+            translateY(-10px)
+            rotateY(60deg)
+            scale(1.05);
+    }
+
+    30%{
+
+        transform:
+            translate(-50%,-50%)
+            translateY(-20px)
+            rotateY(120deg)
+            scale(1.10);
+    }
+
+    50%{
+
+        transform:
+            translate(-50%,-50%)
+            translateY(-27px)
+            rotateY(180deg)
+            scale(1.15);
+    }
+
+    70%{
+
+        transform:
+            translate(-50%,-50%)
+            translateY(-20px)
+            rotateY(240deg)
+            scale(1.10);
+    }
+
+    85%{
+
+        transform:
+            translate(-50%,-50%)
+            translateY(-10px)
+            rotateY(300deg)
+            scale(1.05);
+    }
+
+    100%{
+
+        transform:
+            translate(-50%,-50%)
+            translateY(0)
+            rotateY(360deg)
+            scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   BRILHO DURANTE O GIRO
+===================================================== */
+
+#customCursor.spin .magnifying-glass{
+
+    box-shadow:
+
+        0 0 12px #6b1e23,
+
+        0 0 25px
+        rgba(107,30,35,.75);
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media(max-width:600px){
+
+    header{
+
+        padding:0 18px;
+    }
+
+    .logo{
+
+        font-size:16px;
+
+        letter-spacing:3px;
+    }
+
+    .file-folder{
+
+        width:100%;
+
+        padding:
+            82px
+            15px
+            125px;
+    }
+
+    .folder-tab{
+
+        left:15px;
+        top:17px;
+
+        font-size:9px;
+
+        padding:10px 13px;
+    }
+
+    .close-file{
+
+        right:12px;
+        top:17px;
+    }
+
+    .page{
+
+        width:92%;
+
+        height:440px;
+
+        padding:28px;
+    }
+
+    .page h2{
+
+        font-size:25px;
+    }
+
+    .page p{
+
+        font-size:14px;
+    }
+
+    .navigation{
+
+        width:94%;
+
+        bottom:18px;
+    }
+
+    .navigation-controls{
+
+        gap:7px;
+    }
+
+    .nav-arrow{
+
+        width:50px;
+
+        height:45px;
+
+        font-size:23px;
+    }
+
+    .investigate-button{
+
+        width:180px;
+
+        height:45px;
+
+        font-size:11px;
+    }
+
+    .evidence-mark{
+
+        width:19px;
+    }
+
+    .evidence-mark.active{
+
+        width:29px;
+    }
+
+    #customCursor{
+
+        display:none;
+    }
+
+    html,
+    body,
+    button,
+    .page,
+    .evidence-mark{
+
+        cursor:auto !important;
+    }
+
+}
+/* ==========================================================================
+   INTEGRAÇÃO VISUAL DO PAINEL CENTRAL DE ENTRADA
+   ========================================================================== */
+.board-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 120px 20px 40px; /* Evita que o título bata no cabeçalho fixo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.hero-center {
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.hero-center h1 {
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  letter-spacing: 6px;
+  color: #e8e0d5;
+  text-shadow: 0 0 15px rgba(107, 30, 35, 0.4);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.hero-center .subtitle {
+  font-family: "Courier New", Courier, monospace;
+  color: #c1914f;
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  margin-bottom: 35px;
+  font-weight: bold;
+}
+
+.hero-description {
+  color: rgba(232, 224, 213, 0.75);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  max-width: 780px;
+  margin: 0 auto;
+  letter-spacing: 0.5px;
+}
+
+.btn-investigate-wrapper {
+  margin-top: 55px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: rgba(107, 30, 35, 0.15);
+  border: 1px solid #6b1e23;
+  color: #e8e0d5;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 14px 45px;
+  cursor: none;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(107, 30, 35, 0.25);
+}
+
+.btn-primary:hover {
+  background: #6b1e23;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(107, 30, 35, 0.6);
+  transform: translateY(-2px);
+}

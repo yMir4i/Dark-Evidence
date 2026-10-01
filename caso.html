@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK EVIDENCE — Caso Oculto</title>
+
+    <!-- Importação dos Estilos (Dossiê + Caso) -->
+    <link rel="stylesheet" href="dossier.css">
+    <link rel="stylesheet" href="caso.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         CURSOR PERSONALIZADO DE LUPA 3D
+    ========================== -->
+    <div id="customCursor">
+        <div class="magnifying-glass">
+            <div class="glass">
+                <div class="glass-reflection"></div>
+            </div>
+        </div>
+        <div class="magnifying-handle"></div>
+    </div>
+
+    <!-- =========================
+         CABEÇALHO ORIGINAL INTEGRADO
+    ========================== -->
+    <header>
+        <div class="logo">
+            DARK EVIDENCE
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <!-- Ícone de Casinha (Home) -->
+            <a href="index.html" style="color: #6b1e23; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: .3s;" onmouseover="this.style.color='#eadfd5'; this.style.filter='drop-shadow(0 0 10px rgba(107,30,35,.75))'" onmouseout="this.style.color='#6b1e23'; this.style.filter='none'">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </a>
+
+            <!-- Botão do Menu -->
+            <button
+                class="menu-button"
+                id="openMenu"
+                aria-label="Abrir arquivos"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- =========================
+         ARQUIVO CORROMPIDO (MENU OVERLAY)
+    ========================== -->
+    <div class="file-overlay" id="fileOverlay">
+        <div class="file-folder">
+
+            <!-- TÍTULO -->
+            <div class="folder-tab">
+                ARQUIVO CORROMPIDO
+            </div>
+
+            <!-- FECHAR -->
+            <button class="close-file" id="closeMenu">
+                ×
+            </button>
+
+            <!-- FOLHAS -->
+            <div class="pages">
+
+                <!-- ARQUIVO 01 -->
+                <article class="page">
+                    <div class="page-label">
+                        ARQUIVO 01
+                    </div>
+                    <h2>
+                        Mapa das Evidências
+                    </h2>
+                    <div class="line"></div>
+                    <p>
+                        Análise estatística de casos criminais por período, localização e número de vítimas, identificando padrões, relações e possíveis correlações entre diferentes características das ocorrências.
+                    </p>
+                </article>
+
+                <!-- ARQUIVO 02 -->
+                <article class="page">
+                    <div class="page-label">
+                        ARQUIVO 02
+                    </div>
+                    <h2>
+                        Análise de Evidências
+                    </h2>
+                    <div class="line"></div>
+                    <p>
+                       Aplicação de modelos computacionais para analisar a evolução dos casos ao longo dos anos, identificar padrões em ocorrências solucionadas e não solucionadas e classificar casos a partir de características previamente registradas.
+                    </p>
+                </article>
+
+                <!-- ARQUIVO 03 -->
+                <article class="page selected">
+                    <div class="page-label">
+                        ARQUIVO 03
+                    </div>
+                    <h2>
+                        Caso Oculto
+                    </h2>
+                    <div class="line"></div>
+                    <p>Análise de padrões, agrupamentos e associações entre características das ocorrências, acompanhando sua evolução ao longo do tempo e identificando mudanças nos diferentes períodos.<p>
+                </article>
+
+                <!-- ARQUIVO 04 -->
+                <article class="page">
+                    <div class="page-label">
+                        ARQUIVO 04
+                    </div>
+                    <h2>
+                        Polígrafo
+                    </h2>
+                    <div class="line"></div>
+                    <p>
+                        Para encerrar essa bela jornada de conhecimento, fizemos 6 perguntinhas para vocês responderem e testarem o seu conhecimento!
+                    </p>
+                </article>
+
+            </div>
+
+            <!-- NAVEGAÇÃO DO MENU -->
+            <div class="navigation">
+
+                <!-- INDICADORES -->
+                <div class="page-indicator" id="pageIndicator">
+                    <div class="evidence-mark" data-page="0"></div>
+                    <div class="evidence-mark" data-page="1"></div>
+                    <div class="evidence-mark active" data-page="2"></div>
+                    <div class="evidence-mark" data-page="3"></div>
+                </div>
+
+                <!-- CONTROLES -->
+                <div class="navigation-controls">
+
+                    <button class="nav-arrow" id="previousPage" aria-label="Arquivo anterior">
+                        ←
+                    </button>
+
+                    <button class="investigate-button" id="investigate">
+                        INVESTIGAR
+                    </button>
+
+                    <button class="nav-arrow" id="nextPage" aria-label="Próximo arquivo">
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CANVAS DE PARTÍCULAS DO CASO -->
+    <canvas id="particles"></canvas>
+
+    <main style="padding-top: 80px;">
+
+        <!-- =================================================
+             HOME
+        ================================================== -->
+        <section class="hero">
+            <div class="eyebrow">
+                ANÁLISE DE DADOS • INTELIGÊNCIA ARTIFICIAL
+            </div>
+
+            <h1>
+                CASO<br>
+                <span>OCULTO</span>
+            </h1>
+
+            <p>
+                Um laboratório interativo para explorar
+                agrupamentos, associações e evolução temporal
+                em conjuntos de casos públicos internacionais.
+            </p>
+
+            <div class="hero-actions">
+                <button class="gold-btn" data-scroll="dashboard">
+                    INICIAR INVESTIGAÇÃO
+                </button>
+
+                <button class="ghost-btn" data-scroll="metodos">
+                    EXPLORAR MÉTODOS
+                </button>
+            </div>
+
+            <div class="warning">
+                AMBIENTE EDUCACIONAL • NÃO SUBSTITUI INVESTIGAÇÃO OFICIAL
+            </div>
+        </section>
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================== -->
+        <section id="dashboard" class="section">
+
+            <div class="section-head">
+                <div>
+                    <small>PAINEL INTERATIVO</small>
+                    <h2>Explore os Dados</h2>
+                    <p class="section-description">
+                        Clique nos pontos, filtre os países
+                        e observe como os agrupamentos mudam.
+                    </p>
+                </div>
+
+                <div class="live">
+                    <i></i>
+                    SISTEMA ONLINE
+                </div>
+            </div>
+
+            <!-- LEGENDA -->
+            <div class="explore-guide">
+                <div>
+                    <span class="guide-dot gold"></span>
+                    Caso selecionado
+                </div>
+
+                <div>
+                    <span class="guide-dot red"></span>
+                    Grupo de ocorrências
+                </div>
+
+                <div>
+                    <span class="guide-line"></span>
+                    Evolução temporal
+                </div>
+            </div>
+
+            <!-- FILTROS -->
+            <div class="controls">
+                <button class="filter active" data-filter="all">Todos</button>
+                <button class="filter" data-filter="desaparecimento">Desaparecimentos</button>
+                <button class="filter" data-filter="homicidio">Homicídios</button>
+                <button class="filter" data-filter="outro">Outros</button>
+
+                <label>
+                    País
+                    <select id="country">
+                        <option value="all">Todos</option>
+                        <option value="Estados Unidos">Estados Unidos</option>
+                        <option value="Reino Unido">Reino Unido</option>
+                        <option value="Canadá">Canadá</option>
+                        <option value="Austrália">Austrália</option>
+                        <option value="França">França</option>
+                        <option value="Alemanha">Alemanha</option>
+                    </select>
+                </label>
+
+                <label>
+                    Década
+                    <select id="decade">
+                        <option value="all">Todas</option>
+                        <option value="1970">1970</option>
+                        <option value="1980">1980</option>
+                        <option value="1990">1990</option>
+                        <option value="2000">2000</option>
+                        <option value="2010">2010</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </label>
+            </div>
+
+            <!-- ESTATÍSTICAS -->
+            <div class="stats">
+                <div class="stat">
+                    <span>CASOS NO CONJUNTO</span>
+                    <strong id="caseCount">0</strong>
+                </div>
+
+                <div class="stat">
+                    <span>GRUPOS DETECTADOS</span>
+                    <strong id="clusterCount">0</strong>
+                </div>
+
+                <div class="stat">
+                    <span>PERÍODO ANALISADO</span>
+                    <strong id="period">—</strong>
+                </div>
+            </div>
+
+            <!-- GRÁFICOS -->
+            <div class="dashboard-grid">
+                <!-- AGRUPAMENTOS -->
+                <div class="panel">
+                    <div class="panel-title">
+                        <span>MAPA DE AGRUPAMENTOS</span>
+                        <button id="randomize">↻ RECALCULAR</button>
+                    </div>
+
+                    <div class="chart-help">
+                        Clique em qualquer ponto para investigar um registro.
+                    </div>
+
+                    <canvas id="clusterCanvas"></canvas>
+
+                    <div id="clusterInfo" class="insight">
+                        Nenhum caso selecionado.
+                    </div>
+                </div>
+
+                <!-- SÉRIE TEMPORAL -->
+                <div class="panel">
+                    <div class="panel-title">
+                        SÉRIE TEMPORAL
+                    </div>
+
+                    <div class="chart-help">
+                        Observe como os registros se distribuem ao longo dos anos.
+                    </div>
+
+                    <canvas id="timeCanvas"></canvas>
+
+                    <div class="timeline-tip" id="timeTip">
+                        Passe o cursor sobre o gráfico.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CASOS -->
+            <div class="case-grid" id="caseGrid"></div>
+
+        </section>
+
+        <!-- =================================================
+             MÉTODOS
+        ================================================== -->
+        <section id="metodos" class="section methods">
+            <div class="section-head">
+                <div>
+                    <small>COMO FUNCIONA</small>
+                    <h2>Três lentes sobre o mesmo conjunto</h2>
+                </div>
+            </div>
+
+            <div class="method-grid">
+                <article class="method-card" data-method="cluster">
+                    <span>01</span>
+                    <h3>ML Não Supervisionado</h3>
+                    <p>Procura estruturas e agrupamentos sem receber previamente a resposta correta.</p>
+                    <button>Ver demonstração →</button>
+                </article>
+
+                <article class="method-card" data-method="factor">
+                    <span>02</span>
+                    <h3>Análise Fatorial / Correspondência</h3>
+                    <p>Ajuda a visualizar associações entre diferentes características.</p>
+                    <button>Ver demonstração →</button>
+                </article>
+
+                <article class="method-card" data-method="time">
+                    <span>03</span>
+                    <h3>Séries Temporais</h3>
+                    <p>Observa frequência, intervalos e mudanças ao longo do tempo.</p>
+                    <button>Ver demonstração →</button>
+                </article>
+            </div>
+
+            <div id="methodOutput" class="method-output">
+                Selecione um método para abrir uma simulação.
+            </div>
+        </section>
+
+        <!-- =================================================
+             DADOS
+        ================================================== -->
+        <section class="section data-note">
+            <div>
+                <small>DADOS PÚBLICOS + LIMITAÇÕES</small>
+                <h2>Dados com contexto</h2>
+                <p>
+                    A interface utiliza registros demonstrativos inspirados na estrutura de bases públicas internacionais. Os dados reais devem ser analisados respeitando cobertura, qualidade, anonimização e limitações de cada fonte.
+                </p>
+            </div>
+
+            <div class="source-box">
+                <strong>Fontes públicas</strong>
+                <p>
+                    Algumas bases internacionais podem ser utilizadas para estudos acadêmicos de criminalidade e desaparecimentos.
+                </p>
+                <a href="https://cde.ucr.cjis.gov/LATEST/webapp/" target="_blank">FBI Crime Data Explorer ↗</a>
+                <a href="https://namus.nij.ojp.gov/" target="_blank">NamUs ↗</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =================================================
+         SCANNER
+    ================================================== -->
+    <button id="scannerButton" class="scanner-button" aria-label="Abrir scanner">
+        <span class="scan-ring"></span>
+        <span class="scan-icon">◉</span>
+        <small>SCANNER</small>
+    </button>
+
+    <!-- =================================================
+         MODAL
+    ================================================== -->
+    <div id="scannerModal" class="modal">
+        <div class="scanner-window">
+            <button id="closeScanner" class="close">×</button>
+
+            <div class="scanner-head">
+                <span>SCANNER VISUAL</span>
+                <b id="scanStatus">AGUARDANDO CÂMERA</b>
+            </div>
+
+            <div class="camera">
+                <video id="video" class="vintage-1920s" autoplay playsinline></video>
+                <div class="vintage-overlay"></div>
+                <div class="red-mark">●</div>
+                <div class="scan-line"></div>
+                <div class="face-box"></div>
+            </div>
+
+            <p id="cameraMessage">
+                A câmera só é ativada depois que você permitir no navegador.
+                Nenhuma imagem é enviada pelo site.
+            </p>
+
+            <button id="cameraStart" class="gold-btn">ATIVAR CÂMERA</button>
+        </div>
+    </div>
+
+    <div id="toast"></div>
+
+    <!-- Scripts de Lógica da Aplicação -->
+    <script src="caso-script.js"></script>
+</body>
+</html>

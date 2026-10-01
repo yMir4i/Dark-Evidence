@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK EVIDENCE — Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         CURSOR PERSONALIZADO
+    ========================== -->
+    <div id="customCursor">
+        <div class="magnifying-glass">
+            <div class="glass">
+                <div class="glass-reflection"></div>
+            </div>
+        </div>
+        <div class="magnifying-handle"></div>
+    </div>
+
+    <!-- =========================
+         FUNDO AMBIENTAL
+    ========================== -->
+    <div class="background"></div>
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+    <header>
+        <div class="logo">
+            DARK EVIDENCE
+        </div>
+
+        <button class="menu-button" id="openMenu" aria-label="Abrir arquivos">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- =========================
+         MENU DE ARQUIVOS (OVERLAY)
+    ========================== -->
+    <div class="file-overlay" id="fileOverlay">
+        <div class="file-folder">
+
+            <div class="folder-tab">
+                ARQUIVO CORROMPIDO
+            </div>
+
+            <button class="close-file" id="closeMenu">
+                ×
+            </button>
+
+            <!-- FOLHAS DO DOSSIÊ -->
+            <div class="pages">
+
+                <!-- ARQUIVO 01 (SELECIONADO POR PADRÃO) -->
+                <article class="page selected">
+                    <div class="page-label">
+                        ARQUIVO 01
+                    </div>
+                    <h2>
+                        Mapa das Evidências
+                    </h2>
+                    <div class="line"></div>
+                    <p>
+                        Análise estatística de casos criminais por período, localização e número de vítimas, identificando padrões, relações e possíveis correlações entre diferentes características das ocorrências.
+                </article>
+
+                <!-- ARQUIVO 02 -->
+                <article class="page">
+                    <div class="page-label">
+                        ARQUIVO 02
+                    </div>
+                    <h2>
+                        Análise de Evidências
+                    </h2>
+                    <div class="line"></div>
+                    <p>
+                       Aplicação de modelos computacionais para analisar a evolução dos casos ao longo dos anos, identificar padrões em ocorrências solucionadas e não solucionadas e classificar casos a partir de características previamente registradas.
+                    </p>
+                </article>
+
+                <!-- ARQUIVO 03 -->
+                <article class="page">
+                    <div class="page-label">
+                        ARQUIVO 03
+                    </div>
+                    <h2>
+                        Caso Oculto
+                    </h2>
+                    <div class="line"></div>
+                    <p>
+                       Análise de padrões, agrupamentos e associações entre características das ocorrências, acompanhando sua evolução ao longo do tempo e identificando mudanças nos diferentes períodos.
+                    </p>
+                </article>
+
+                <!-- ARQUIVO 04 -->
+                <article class="page">
+                    <div class="page-label">
+                        ARQUIVO 04
+                    </div>
+                    <h2>
+                        Polígrafo
+                    </h2>
+                    <div class="line"></div>
+                    <p>
+                       Para encerrar essa bela jornada de conhecimento, fizemos 6 perguntinhas para vocês responderem e testarem o seu conhecimento!
+                    </p>
+                </article>
+
+            </div>
+
+            <!-- CONTROLES E NAVEGAÇÃO DO MENU -->
+            <div class="navigation">
+
+                <div class="page-indicator" id="pageIndicator">
+                    <div class="evidence-mark active" data-page="0"></div>
+                    <div class="evidence-mark" data-page="1"></div>
+                    <div class="evidence-mark" data-page="2"></div>
+                    <div class="evidence-mark" data-page="3"></div>
+                </div>
+
+                <div class="navigation-controls">
+                    <button class="nav-arrow hidden" id="previousPage" aria-label="Arquivo anterior">
+                        ←
+                    </button>
+
+                    <button class="investigate-button" id="investigate">
+                        INVESTIGAR
+                    </button>
+
+                    <button class="nav-arrow" id="nextPage" aria-label="Próximo arquivo">
+                        →
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- =========================
+         ÁREA PRINCIPAL
+    ========================== -->
+    <main>
+        <div class="board-container">
+            <div class="hero-center">
+                <h1>DARK EVIDENCE</h1>
+                <div class="subtitle">SISTEMA DE INVESTIGAÇÃO DE DADOS & INTELIGÊNCIA</div>
+                
+                <p class="hero-description">
+                    Laboratório interativo e plataforma analítica para exploração de casos históricos, detecção de padrões, análise de agrupamentos e estatística aplicada.
+                </p>
+
+                <div class="btn-investigate-wrapper">
+                    <a href="dossier.html?case=unabomber" class="btn-primary">INICIAR INVESTIGAÇÃO</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
